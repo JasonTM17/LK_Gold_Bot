@@ -14,7 +14,28 @@ from telegram.ext import (
 )
 
 from app import database as db
-from app.config import *
+from app.config import (
+    ADMIN_ID,
+    BOT_TOKEN,
+    DAILY_LIMIT,
+    DEFAULT_LANG,
+    DONATE_PHOTO,
+    ENABLE_NEXTDNS,
+    E_ANDROID,
+    E_ERROR,
+    E_GLOBE,
+    E_ID,
+    E_LOADING,
+    E_STAT,
+    E_SUCCESS,
+    E_TAG,
+    E_USER,
+    NEXTDNS_BLOCKLIST,
+    NEXTDNS_KEY,
+    NUM_WORKERS,
+    T,
+    validate_config,
+)
 from app.services import locket, nextdns
 
 
