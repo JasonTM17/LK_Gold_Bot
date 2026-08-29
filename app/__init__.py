@@ -1,0 +1,1 @@
+"""Application package for the Locket personal assistant bot."""
