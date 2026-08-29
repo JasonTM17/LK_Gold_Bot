@@ -1,0 +1,17 @@
+[Unit]
+Description=LK Gold Bot Telegram service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/LK_Gold_Bot
+ExecStart=/opt/LK_Gold_Bot/.venv/bin/python /opt/LK_Gold_Bot/main.py
+EnvironmentFile=/opt/LK_Gold_Bot/.env
+Restart=always
+RestartSec=5
+User=locketbot
+Group=locketbot
+
+[Install]
+WantedBy=multi-user.target
