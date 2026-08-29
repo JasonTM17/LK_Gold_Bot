@@ -9,6 +9,13 @@ logger = logging.getLogger(__name__)
 
 INVITE_ID_PATTERN = re.compile(r"/invites/([A-Za-z0-9]{20,40})")
 USERNAME_PATTERN = re.compile(r"^[A-Za-z0-9_.-]{1,50}$")
+REQUEST_TIMEOUT_SECONDS = 10
+USER_AGENT = "Mozilla/5.0 (compatible; LocketPersonalAssistant/1.0)"
+
+
+def clean_username_candidate(value: str) -> str:
+    """Return a display-safe username candidate without common user prefixes."""
+    return (value or "").strip().strip("/@")
 
 
 def normalize_username(raw_value: str) -> str:
@@ -21,9 +28,9 @@ def normalize_username(raw_value: str) -> str:
         parsed = urlparse(value if value.startswith(("http://", "https://")) else f"https://{value}")
         path = parsed.path.strip("/")
         if path:
-            return path.split("/")[-1].strip()
+            return clean_username_candidate(path.split("/")[-1])
 
-    return value.split()[0].strip()
+    return clean_username_candidate(value.split()[0])
 
 
 def extract_invite_id(*texts: str) -> str | None:
@@ -51,12 +58,12 @@ async def resolve_uid(username: str) -> str | None:
 
     url = f"https://locket.cam/{username}"
     headers = {
-        "User-Agent": "Mozilla/5.0 (compatible; LocketPersonalAssistant/1.0)",
+        "User-Agent": USER_AGENT,
         "Accept": "text/html,application/xhtml+xml",
     }
 
     try:
-        timeout = aiohttp.ClientTimeout(total=10)
+        timeout = aiohttp.ClientTimeout(total=REQUEST_TIMEOUT_SECONDS)
         async with aiohttp.ClientSession(timeout=timeout) as session:
             async with session.get(url, headers=headers, allow_redirects=True) as response:
                 html = await response.text(errors="ignore")
