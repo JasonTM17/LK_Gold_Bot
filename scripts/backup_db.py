@@ -3,8 +3,16 @@
 from __future__ import annotations
 
 import shutil
+import sys
 from datetime import datetime
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT_DIR))
+
+load_dotenv()
 
 from app.config import DATA_DIR, DB_PATH
 

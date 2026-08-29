@@ -7,6 +7,9 @@ All notable changes to this project are documented here.
 - Added repository metadata, CI, issue templates, and project documentation.
 - Expanded setup, deployment, security, and troubleshooting guidance.
 - Improved tests and maintainability around parsing/configuration helpers.
+- Replaced wildcard config imports with explicit imports for maintainability.
+- Added local healthcheck, backup, config display, and stats export helper scripts.
+- Expanded README into a complete personal-project guide.
 
 ## 1.0.0 - 2026-08-29
 

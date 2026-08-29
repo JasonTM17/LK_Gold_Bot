@@ -3,6 +3,15 @@
 from __future__ import annotations
 
 import json
+import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT_DIR))
+
+load_dotenv()
 
 from app import config, database
 
