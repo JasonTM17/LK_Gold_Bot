@@ -7,9 +7,18 @@ class LocketParsingTests(unittest.TestCase):
     def test_normalize_username_from_plain_text(self):
         self.assertEqual(locket.normalize_username("alice"), "alice")
 
+    def test_normalize_username_strips_at_prefix(self):
+        self.assertEqual(locket.normalize_username("@alice"), "alice")
+
     def test_normalize_username_from_locket_url(self):
         self.assertEqual(
             locket.normalize_username("https://locket.cam/alice?utm_source=test"),
+            "alice",
+        )
+
+    def test_normalize_username_from_at_locket_url(self):
+        self.assertEqual(
+            locket.normalize_username("https://locket.cam/@alice?utm_source=test"),
             "alice",
         )
 
