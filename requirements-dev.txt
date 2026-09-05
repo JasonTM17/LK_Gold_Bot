@@ -2,4 +2,4 @@
 
 # Optional local quality tools. The project can still run with requirements.txt only.
 pytest>=8.0,<9
-ruff>=0.6,<1
+ruff>=0.16.5,<1
