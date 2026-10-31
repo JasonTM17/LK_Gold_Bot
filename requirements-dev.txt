@@ -1,5 +1,5 @@
 -r requirements.txt
 
 # Optional local quality tools. The project can still run with requirements.txt only.
-pytest>=8.0,<9
+pytest>=9.2.0,<10
 ruff>=0.6,<1
